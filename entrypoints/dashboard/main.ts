@@ -27,7 +27,7 @@ async function loadReminders() {
       <tr data-id="${reminder.id}">
         <td>${escapeHtml(reminder.url)}</td>
         <td><span class="match-tag">${t('match_type_' + reminder.matchType)}</span></td>
-        <td>${escapeHtml(reminder.note)}</td>
+        <td class="note-cell" title="${escapeHtml(reminder.note)}">${escapeHtml(reminder.note)}</td>
         <td>${new Date(reminder.createdAt).toLocaleString()}</td>
         <td>
           <button class="delete-btn" data-id="${reminder.id}">${t('delete_button')}</button>
