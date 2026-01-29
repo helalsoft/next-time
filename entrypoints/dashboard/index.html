@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Time Dashboard</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Reminder Dashboard</h1>
+        <div class="actions">
+            <button id="refresh">Refresh List</button>
+        </div>
+        <table id="reminders-table">
+            <thead>
+                <tr>
+                    <th>URL Pattern</th>
+                    <th>Match Type</th>
+                    <th>Note</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="reminders-list">
+                <!-- Reminders will be injected here -->
+            </tbody>
+        </table>
+        <div id="no-reminders" style="display: none; text-align: center; margin-top: 2rem;">
+            No reminders found. Add some from the extension popup!
+        </div>
+    </div>
+    <script type="module" src="./main.ts"></script>
+</body>
+</html>

@@ -1,24 +1,53 @@
 import './style.css';
-import typescriptLogo from '@/assets/typescript.svg';
-import wxtLogo from '/wxt.svg';
-import { setupCounter } from '@/components/counter';
+import { addReminder } from '@/utils/storage';
+import { MatchType } from '@/utils/types';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://wxt.dev" target="_blank">
-      <img src="${wxtLogo}" class="logo" alt="WXT logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>WXT + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the WXT and TypeScript logos to learn more
-    </p>
-  </div>
-`;
+const urlInput = document.querySelector<HTMLInputElement>('#url')!;
+const matchTypeSelect = document.querySelector<HTMLSelectElement>('#matchType')!;
+const noteTextarea = document.querySelector<HTMLTextAreaElement>('#note')!;
+const saveButton = document.querySelector<HTMLButtonElement>('#save')!;
+const statusDiv = document.querySelector<HTMLDivElement>('#status')!;
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);
+// Pre-fill current URL
+browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
+  const currentTab = tabs[0];
+  if (currentTab?.url) {
+    urlInput.value = currentTab.url;
+  }
+});
+
+saveButton.addEventListener('click', async () => {
+  const url = urlInput.value.trim();
+  const matchType = matchTypeSelect.value as MatchType;
+  const note = noteTextarea.value.trim();
+
+  if (!url || !note) {
+    showStatus('Please fill in all fields', 'error');
+    return;
+  }
+
+  try {
+    await addReminder({
+      url,
+      matchType,
+      note,
+    });
+    showStatus('Reminder saved!', 'success');
+    noteTextarea.value = '';
+    
+    // Optionally close popup after save
+    // setTimeout(() => window.close(), 1500);
+  } catch (e) {
+    showStatus('Error saving reminder', 'error');
+    console.error(e);
+  }
+});
+
+function showStatus(message: string, type: 'success' | 'error') {
+  statusDiv.textContent = message;
+  statusDiv.className = type;
+  setTimeout(() => {
+    statusDiv.textContent = '';
+    statusDiv.className = '';
+  }, 3000);
+}

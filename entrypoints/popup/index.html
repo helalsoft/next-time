@@ -7,7 +7,29 @@
     <meta name="manifest.type" content="browser_action" />
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <h2>Add Reminder</h2>
+      <div class="form-group">
+        <label for="url">URL:</label>
+        <input type="text" id="url" placeholder="URL Pattern" />
+      </div>
+      <div class="form-group">
+        <label for="matchType">Match Type:</label>
+        <select id="matchType">
+          <option value="domain">Whole Site (Domain)</option>
+          <option value="exact">Exact Match</option>
+          <option value="prefix">Starts With</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="note">Note:</label>
+        <textarea id="note" placeholder="Enter your reminder..."></textarea>
+      </div>
+      <button id="save">Save Reminder</button>
+      <div id="status"></div>
+      <hr />
+      <a href="/dashboard.html" target="_blank">Manage Reminders</a>
+    </div>
     <script type="module" src="./main.ts"></script>
   </body>
 </html>
