@@ -168,40 +168,6 @@ importInput.addEventListener('change', (e) => {
   reader.readAsText(file);
 });
 
-function openEditModal(reminder: Reminder) {
-  currentlyEditingId = reminder.id;
-  editUrlInput.value = reminder.url;
-  editMatchTypeSelect.value = reminder.matchType;
-  editNoteTextarea.value = reminder.note;
-  editModal.style.display = 'block';
-}
-
-function closeEditModal() {
-  editModal.style.display = 'none';
-  currentlyEditingId = null;
-}
-
-saveEditButton.addEventListener('click', async () => {
-  if (currentlyEditingId) {
-    await updateReminder(currentlyEditingId, {
-      url: editUrlInput.value.trim(),
-      matchType: editMatchTypeSelect.value as MatchType,
-      note: editNoteTextarea.value.trim(),
-    });
-    closeEditModal();
-    loadReminders();
-  }
-});
-
-cancelEditButton.addEventListener('click', closeEditModal);
-
-// Close modal when clicking outside
-window.addEventListener('click', (event) => {
-  if (event.target === editModal) {
-    closeEditModal();
-  }
-});
-
 function escapeHtml(unsafe: string) {
   return unsafe
     .replace(/&/g, '&amp;')
