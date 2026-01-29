@@ -27,40 +27,55 @@ export default defineContentScript({
           const header = document.createElement('div');
           header.className = 'nt-header';
           
-          const titleContainer = document.createElement('div');
-          titleContainer.className = 'nt-title-container';
-
           const title = document.createElement('span');
           title.className = 'nt-title';
           title.textContent = t('extension_name');
-          titleContainer.appendChild(title);
+          
+          const closeBtn = document.createElement('button');
+          closeBtn.className = 'nt-close';
+          closeBtn.innerHTML = '&times;';
+          closeBtn.onclick = () => ui.remove();
+          
+          header.appendChild(title);
+          header.appendChild(closeBtn);
+          
+          const content = document.createElement('div');
+          content.className = 'nt-content';
+          
+          const p = document.createElement('p');
+          p.textContent = matches[0];
+          content.appendChild(p);
+          
+          modal.appendChild(header);
+          modal.appendChild(content);
 
           if (matches.length > 1) {
+            const footer = document.createElement('div');
+            footer.className = 'nt-footer';
+
             const pagination = document.createElement('div');
             pagination.className = 'nt-pagination';
             
             const prevBtn = document.createElement('button');
             prevBtn.className = 'nt-nav-btn';
-            prevBtn.innerHTML = '&lsaquo;';
+            prevBtn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>`;
             
             const count = document.createElement('span');
             count.className = 'nt-count';
             
             const nextBtn = document.createElement('button');
             nextBtn.className = 'nt-nav-btn';
-            nextBtn.innerHTML = '&rsaquo;';
+            nextBtn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>`;
 
             const updatePagination = () => {
               count.textContent = `${currentIndex + 1} / ${matches.length}`;
               prevBtn.disabled = currentIndex === 0;
               nextBtn.disabled = currentIndex === matches.length - 1;
               
-              const content = modal.querySelector('.nt-content');
-              if (content) {
-                content.innerHTML = '';
-                const p = document.createElement('p');
-                p.textContent = matches[currentIndex];
-                content.appendChild(p);
+              const contentEl = modal.querySelector('.nt-content p');
+              if (contentEl) {
+                contentEl.textContent = matches[currentIndex];
+                modal.querySelector('.nt-content')?.scrollTo(0, 0);
               }
             };
 
@@ -81,29 +96,13 @@ export default defineContentScript({
             pagination.appendChild(prevBtn);
             pagination.appendChild(count);
             pagination.appendChild(nextBtn);
-            titleContainer.appendChild(pagination);
+            footer.appendChild(pagination);
+            modal.appendChild(footer);
             
             // Initial update
             setTimeout(updatePagination, 0);
           }
           
-          const closeBtn = document.createElement('button');
-          closeBtn.className = 'nt-close';
-          closeBtn.innerHTML = '&times;';
-          closeBtn.onclick = () => ui.remove();
-          
-          header.appendChild(titleContainer);
-          header.appendChild(closeBtn);
-          
-          const content = document.createElement('div');
-          content.className = 'nt-content';
-          
-          const p = document.createElement('p');
-          p.textContent = matches[0];
-          content.appendChild(p);
-          
-          modal.appendChild(header);
-          modal.appendChild(content);
           wrapper.appendChild(modal);
           container.appendChild(wrapper);
           
@@ -150,7 +149,7 @@ export default defineContentScript({
           }
           .nt-header {
             all: initial !important;
-            padding: 12px 20px !important;
+            padding: 16px 20px !important;
             display: flex !important;
             justify-content: space-between !important;
             align-items: center !important;
@@ -159,13 +158,6 @@ export default defineContentScript({
             font-family: inherit !important;
             box-sizing: border-box !important;
           }
-          .nt-title-container {
-            all: initial !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 16px !important;
-            font-family: inherit !important;
-          }
           .nt-title {
             all: initial !important;
             font-weight: 600 !important;
@@ -173,38 +165,51 @@ export default defineContentScript({
             color: #fff !important;
             font-family: inherit !important;
           }
+          .nt-footer {
+            all: initial !important;
+            padding: 12px 20px !important;
+            display: flex !important;
+            justify-content: center !important;
+            border-top: 1px solid #444 !important;
+            background: #1a1a1a !important;
+            font-family: inherit !important;
+            box-sizing: border-box !important;
+          }
           .nt-pagination {
             all: initial !important;
             display: flex !important;
             align-items: center !important;
-            gap: 8px !important;
+            gap: 12px !important;
             background: #333 !important;
-            padding: 4px 12px !important;
-            border-radius: 20px !important;
+            padding: 6px 16px !important;
+            border-radius: 24px !important;
             font-family: inherit !important;
           }
           .nt-count {
             all: initial !important;
-            font-size: 13px !important;
+            font-size: 14px !important;
             color: #ccc !important;
             font-family: inherit !important;
-            min-width: 40px !important;
+            min-width: 45px !important;
             text-align: center !important;
+            font-weight: 500 !important;
           }
           .nt-nav-btn {
             all: initial !important;
             background: transparent !important;
             border: none !important;
             color: #fff !important;
-            font-size: 18px !important;
             cursor: pointer !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            width: 24px !important;
-            height: 24px !important;
+            width: 32px !important;
+            height: 32px !important;
             border-radius: 50% !important;
             transition: background 0.2s !important;
+          }
+          .nt-nav-btn svg {
+            display: block !important;
           }
           .nt-nav-btn:hover:not(:disabled) {
             background: rgba(255, 255, 255, 0.1) !important;
@@ -255,7 +260,7 @@ export default defineContentScript({
               color: #213547 !important;
               border-color: #eee !important;
             }
-            .nt-header {
+            .nt-header, .nt-footer {
               background: #f9f9f9 !important;
               border-color: #eee !important;
             }
