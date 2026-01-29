@@ -348,14 +348,12 @@ export default defineContentScript({
     // Initial check on page load
     await checkAndShowReminders();
 
-    // Listen for SPA navigation (back/forward)
-    const handlePopstate = () => checkAndShowReminders();
-    window.addEventListener('popstate', handlePopstate);
-    ctx.onInvalidated(() => {
-      window.removeEventListener('popstate', handlePopstate);
+    // Listen for SPA navigation using WXT's built-in event
+    ctx.addEventListener(window, 'wxt:locationchange', () => {
+      checkAndShowReminders();
     });
 
-    // Listen for messages from background script about URL changes (SPAs)
+    // Listen for messages from background script about URL changes or tab activation
     browser.runtime.onMessage.addListener((message: { type: string }) => {
       if (message.type === 'REFRESH_REMINDERS') {
         checkAndShowReminders();
