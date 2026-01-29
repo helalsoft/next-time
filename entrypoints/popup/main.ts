@@ -24,6 +24,19 @@ async function saveDraft() {
 
 // Restore draft or pre-fill current URL
 async function init() {
+  const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+  const currentTab = tabs[0];
+  
+  // Disable logic on internal chrome pages
+  if (currentTab?.url?.startsWith('chrome://')) {
+    urlInput.disabled = true;
+    matchTypeSelect.disabled = true;
+    noteTextarea.disabled = true;
+    saveButton.disabled = true;
+    noteTextarea.placeholder = "Disabled on internal Chrome pages";
+    return;
+  }
+
   const draft = await draftStorage.getValue();
   
   if (draft) {
@@ -31,9 +44,6 @@ async function init() {
     matchTypeSelect.value = draft.matchType;
     noteTextarea.value = draft.note;
   } else {
-    // Only pre-fill URL if no draft exists
-    const tabs = await browser.tabs.query({ active: true, currentWindow: true });
-    const currentTab = tabs[0];
     if (currentTab?.url) {
       urlInput.value = currentTab.url;
     }
