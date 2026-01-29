@@ -11,4 +11,7 @@ export default defineConfig({
       default_title: '__MSG_action_title__',
     },
   },
+  runner: {
+    startUrls: ['https://www.google.com'],
+  },
 });
