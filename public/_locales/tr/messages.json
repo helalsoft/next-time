@@ -15,7 +15,7 @@
     "message": "Eşleşme Türü:"
   },
   "match_type_domain": {
-    "message": "Tüm Site (Alan Adı)"
+    "message": "Alan Adı"
   },
   "match_type_exact": {
     "message": "Tam Eşleşme"

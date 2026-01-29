@@ -15,7 +15,7 @@
     "message": "Match Type:"
   },
   "match_type_domain": {
-    "message": "Whole Site (Domain)"
+    "message": "Domain"
   },
   "match_type_exact": {
     "message": "Exact Match"
