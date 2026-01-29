@@ -45,7 +45,10 @@
     "message": "Hatırlatıcı kaydedilirken hata oluştu"
   },
   "dashboard_title": {
-    "message": "Hatırlatıcı Paneli"
+    "message": "Next Time"
+  },
+  "action_title": {
+    "message": "Next Time"
   },
   "refresh_button": {
     "message": "Listeyi Yenile"

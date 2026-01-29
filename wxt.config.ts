@@ -6,5 +6,8 @@ export default defineConfig({
     homepage_url: 'https://github.com/helalsoft/next-time',
     permissions: ['storage', 'tabs'],
     default_locale: 'en',
+    action: {
+      default_title: '__MSG_action_title__',
+    },
   },
 });

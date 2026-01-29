@@ -4,7 +4,12 @@ export function setupI18n() {
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     const key = el.getAttribute('data-i18n');
     if (key) {
-      el.textContent = browser.i18n.getMessage(key as MessageKey);
+      const message = browser.i18n.getMessage(key as MessageKey);
+      if (el.tagName === 'TITLE') {
+        document.title = message;
+      } else {
+        el.textContent = message;
+      }
     }
   });
 

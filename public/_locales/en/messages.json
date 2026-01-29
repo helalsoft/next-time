@@ -45,7 +45,10 @@
     "message": "Error saving reminder"
   },
   "dashboard_title": {
-    "message": "Reminder Dashboard"
+    "message": "Next Time"
+  },
+  "action_title": {
+    "message": "Next Time"
   },
   "refresh_button": {
     "message": "Refresh List"
