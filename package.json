@@ -2,6 +2,7 @@
   "name": "next-time",
   "description": "manifest.json description",
   "author": "Helalsoft",
+  "homepage": "https://github.com/helalsoft/next-time",
   "private": true,
   "version": "0.0.0",
   "type": "module",

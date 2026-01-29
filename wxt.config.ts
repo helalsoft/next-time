@@ -4,5 +4,6 @@ import { defineConfig } from 'wxt';
 export default defineConfig({
   manifest: {
     author: 'Helalsoft',
+    homepage_url: 'https://github.com/helalsoft/next-time',
   },
 });
