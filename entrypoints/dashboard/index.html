@@ -9,7 +9,10 @@
     <div id="app">
         <h1 data-i18n="dashboard_title">Reminder Dashboard</h1>
         <div class="actions">
+            <button id="export-btn" data-i18n="export_button">Export</button>
+            <button id="import-btn" data-i18n="import_button">Import</button>
             <button id="refresh" data-i18n="refresh_button">Refresh List</button>
+            <input type="file" id="import-input" accept=".json" style="display: none;" />
         </div>
         <table id="reminders-table">
             <thead>

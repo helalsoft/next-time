@@ -53,6 +53,18 @@
   "refresh_button": {
     "message": "Refresh List"
   },
+  "export_button": {
+    "message": "Export"
+  },
+  "import_button": {
+    "message": "Import"
+  },
+  "import_success": {
+    "message": "Reminders imported successfully!"
+  },
+  "import_error": {
+    "message": "Failed to import reminders. Invalid file format."
+  },
   "table_url": {
     "message": "URL Pattern"
   },

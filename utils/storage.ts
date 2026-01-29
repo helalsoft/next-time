@@ -41,3 +41,7 @@ export async function updateReminder(id: string, updates: Partial<Reminder>) {
     reminders.map((r: Reminder) => (r.id === id ? { ...r, ...updates } : r))
   );
 }
+
+export async function setReminders(reminders: Reminder[]) {
+  await remindersStorage.setValue(reminders);
+}

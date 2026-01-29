@@ -53,6 +53,18 @@
   "refresh_button": {
     "message": "Listeyi Yenile"
   },
+  "export_button": {
+    "message": "Dışa Aktar"
+  },
+  "import_button": {
+    "message": "İçe Aktar"
+  },
+  "import_success": {
+    "message": "Hatırlatıcılar başarıyla içe aktarıldı!"
+  },
+  "import_error": {
+    "message": "Hatırlatıcılar içe aktarılamadı. Geçersiz dosya formatı."
+  },
   "table_url": {
     "message": "URL Deseni"
   },
