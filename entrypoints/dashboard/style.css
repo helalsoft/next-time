@@ -2,14 +2,45 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+
+  --bg-color: #ffffff;
+  --text-color: #213547;
+  --table-bg: #f9f9f9;
+  --header-bg: #eee;
+  --border-color: #ddd;
+  --btn-bg: #eee;
+  --btn-text: #213547;
+  --btn-hover: #ddd;
+  --delete-bg: #fee2e2;
+  --delete-text: #991b1b;
+  --delete-hover: #fecaca;
+  --tag-bg: #eee;
+
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #242424;
+    --text-color: rgba(255, 255, 255, 0.87);
+    --table-bg: #333;
+    --header-bg: #1a1a1a;
+    --border-color: #444;
+    --btn-bg: #1a1a1a;
+    --btn-text: #ffffff;
+    --btn-hover: #333;
+    --delete-bg: #450a0a;
+    --delete-text: #fecaca;
+    --delete-hover: #7f1d1d;
+    --tag-bg: #444;
+  }
 }
 
 body {
   margin: 0;
   padding: 2rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 #app {
@@ -31,19 +62,20 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
-  background-color: #333;
+  background-color: var(--table-bg);
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
 th, td {
   padding: 1rem;
   text-align: left;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid var(--border-color);
 }
 
 th {
-  background-color: #1a1a1a;
+  background-color: var(--header-bg);
   font-weight: 600;
 }
 
@@ -57,7 +89,7 @@ tr:last-child td {
   border-radius: 4px;
   font-size: 0.8rem;
   font-weight: 500;
-  background-color: #444;
+  background-color: var(--tag-bg);
 }
 
 button {
@@ -67,44 +99,23 @@ button {
   font-size: 0.9em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
   cursor: pointer;
-  transition: border-color 0.25s;
-  color: white;
+  transition: all 0.25s;
 }
 
 button:hover {
+  background-color: var(--btn-hover);
   border-color: #646cff;
 }
 
 button.delete-btn {
-  background-color: #3d1a1a;
+  background-color: var(--delete-bg);
+  color: var(--delete-text);
 }
 
 button.delete-btn:hover {
+  background-color: var(--delete-hover);
   border-color: #f44336;
-  background-color: #5d1a1a;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  table {
-    background-color: #f9f9f9;
-  }
-  th {
-    background-color: #eee;
-  }
-  td {
-    border-bottom: 1px solid #ddd;
-  }
-  .match-tag {
-    background-color: #ddd;
-  }
-  button {
-    background-color: #eee;
-    color: #213547;
-  }
 }
