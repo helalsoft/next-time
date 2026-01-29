@@ -13,9 +13,9 @@ export default defineConfig({
   },
   runner: {
     startUrls: [
-      'https://www.google.com',
       'https://www.hepsiburada.com',
-      'https://www.migros.com.tr'
+      'https://www.migros.com.tr',
+      'https://www.google.com'
     ],
   },
 });
