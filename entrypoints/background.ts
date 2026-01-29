@@ -1,4 +1,18 @@
 export default defineBackground(() => {
+  browser.runtime.onInstalled.addListener(() => {
+    browser.contextMenus.create({
+      id: 'open-dashboard',
+      title: browser.i18n.getMessage('open_dashboard'),
+      contexts: ['action'],
+    });
+  });
+
+  browser.contextMenus.onClicked.addListener((info) => {
+    if (info.menuItemId === 'open-dashboard') {
+      browser.tabs.create({ url: browser.runtime.getURL('/dashboard.html') });
+    }
+  });
+
   browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (tab.url?.startsWith('chrome://')) {
       browser.action.disable(tabId);

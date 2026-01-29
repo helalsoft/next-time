@@ -35,6 +35,9 @@
   "manage_link": {
     "message": "Manage Reminders"
   },
+  "open_dashboard": {
+    "message": "Open Reminders Dashboard"
+  },
   "status_fill_fields": {
     "message": "Please fill in all fields"
   },

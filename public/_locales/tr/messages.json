@@ -35,6 +35,9 @@
   "manage_link": {
     "message": "Hatırlatıcıları Yönet"
   },
+  "open_dashboard": {
+    "message": "Hatırlatıcı Panelini Aç"
+  },
   "status_fill_fields": {
     "message": "Lütfen tüm alanları doldurun"
   },
