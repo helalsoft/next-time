@@ -53,6 +53,9 @@
   "refresh_button": {
     "message": "Listeyi Yenile"
   },
+  "search_placeholder": {
+    "message": "Hatırlatıcılarda ara..."
+  },
   "export_button": {
     "message": "Dışa Aktar"
   },
@@ -100,6 +103,9 @@
   },
   "no_reminders": {
     "message": "Hatırlatıcı bulunamadı. Uzantı penceresinden yeni bir tane ekleyin!"
+  },
+  "no_search_results": {
+    "message": "Aramanızla eşleşen hatırlatıcı bulunamadı."
   },
   "reminder_alert_single": {
     "message": "$1",

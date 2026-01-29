@@ -53,6 +53,9 @@
   "refresh_button": {
     "message": "Refresh List"
   },
+  "search_placeholder": {
+    "message": "Search reminders..."
+  },
   "export_button": {
     "message": "Export"
   },
@@ -100,6 +103,9 @@
   },
   "no_reminders": {
     "message": "No reminders found. Add some from the extension popup!"
+  },
+  "no_search_results": {
+    "message": "No reminders match your search."
   },
   "reminder_alert_single": {
     "message": "$1",

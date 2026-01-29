@@ -12,6 +12,7 @@ const refreshButton = document.querySelector<HTMLButtonElement>('#refresh')!;
 const exportButton = document.querySelector<HTMLButtonElement>('#export-btn')!;
 const importButton = document.querySelector<HTMLButtonElement>('#import-btn')!;
 const importInput = document.querySelector<HTMLInputElement>('#import-input')!;
+const searchInput = document.querySelector<HTMLInputElement>('#search-input')!;
 
 // Modal elements
 const editModal = document.querySelector<HTMLDivElement>('#edit-modal')!;
@@ -22,18 +23,32 @@ const saveEditButton = document.querySelector<HTMLButtonElement>('#save-edit')!;
 const cancelEditButton = document.querySelector<HTMLButtonElement>('#cancel-edit')!;
 
 let currentlyEditingId: string | null = null;
+let allReminders: Reminder[] = [];
 
 async function loadReminders() {
-  const reminders = await getReminders();
+  allReminders = await getReminders();
+  renderReminders();
+}
+
+function renderReminders() {
+  const searchQuery = searchInput.value.toLowerCase().trim();
   
-  if (reminders.length === 0) {
+  const filteredReminders = allReminders.filter(reminder => {
+    return (
+      reminder.url.toLowerCase().includes(searchQuery) ||
+      reminder.note.toLowerCase().includes(searchQuery)
+    );
+  });
+
+  if (filteredReminders.length === 0) {
     remindersList.innerHTML = '';
     noRemindersDiv.style.display = 'block';
+    noRemindersDiv.textContent = searchQuery ? t('no_search_results') : t('no_reminders');
     return;
   }
 
   noRemindersDiv.style.display = 'none';
-  remindersList.innerHTML = reminders
+  remindersList.innerHTML = filteredReminders
     .sort((a: Reminder, b: Reminder) => b.createdAt - a.createdAt)
     .map(
       (reminder: Reminder) => `
@@ -54,7 +69,7 @@ async function loadReminders() {
   // Add event listeners to buttons
   document.querySelectorAll('.delete-btn').forEach((btn) => {
     btn.addEventListener('click', async (e) => {
-      const id = (e.target as HTMLButtonElement).dataset.id;
+      const id = (e.currentTarget as HTMLButtonElement).dataset.id;
       if (id && confirm(t('delete_confirm'))) {
         await removeReminder(id);
         loadReminders();
@@ -64,10 +79,9 @@ async function loadReminders() {
 
   document.querySelectorAll('.edit-btn').forEach((btn) => {
     btn.addEventListener('click', async (e) => {
-      const id = (e.target as HTMLButtonElement).dataset.id;
+      const id = (e.currentTarget as HTMLButtonElement).dataset.id;
       if (id) {
-        const reminders = await getReminders();
-        const reminder = reminders.find(r => r.id === id);
+        const reminder = allReminders.find(r => r.id === id);
         if (reminder) {
           openEditModal(reminder);
         }
@@ -75,6 +89,8 @@ async function loadReminders() {
     });
   });
 }
+
+searchInput.addEventListener('input', renderReminders);
 
 function openEditModal(reminder: Reminder) {
   currentlyEditingId = reminder.id;
