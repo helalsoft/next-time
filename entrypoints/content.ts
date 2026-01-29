@@ -152,6 +152,7 @@ export default defineContentScript({
             line-height: 1.5 !important;
             color: inherit !important;
             font-family: inherit !important;
+            white-space: pre-wrap !important;
           }
           .nt-content ul {
             all: initial !important;
@@ -170,6 +171,7 @@ export default defineContentScript({
             line-height: 1.5 !important;
             color: inherit !important;
             font-family: inherit !important;
+            white-space: pre-wrap !important;
           }
           .nt-content li:last-child {
             margin-bottom: 0 !important;
