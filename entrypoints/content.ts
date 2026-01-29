@@ -69,6 +69,7 @@ export default defineContentScript({
             top: 0 !important;
             left: 0 !important;
             z-index: 2147483647 !important;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
           }
           .nt-modal-wrapper {
             all: initial !important;
@@ -82,10 +83,11 @@ export default defineContentScript({
             justify-content: center !important;
             background: rgba(0, 0, 0, 0.5) !important;
             backdrop-filter: blur(4px) !important;
-            font-family: Inter, system-ui, sans-serif !important;
+            font-family: inherit !important;
             pointer-events: auto !important;
           }
           .nt-modal {
+            all: initial !important;
             background: #242424 !important;
             color: rgba(255, 255, 255, 0.87) !important;
             width: 90% !important;
@@ -94,65 +96,102 @@ export default defineContentScript({
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3) !important;
             overflow: hidden !important;
             border: 1px solid #444 !important;
-            display: block !important;
+            display: flex !important;
+            flex-direction: column !important;
+            font-family: inherit !important;
           }
           .nt-header {
-            padding: 1rem 1.25rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #444;
-            background: #1a1a1a;
+            all: initial !important;
+            padding: 16px 20px !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            border-bottom: 1px solid #444 !important;
+            background: #1a1a1a !important;
+            font-family: inherit !important;
+            box-sizing: border-box !important;
           }
           .nt-title {
-            font-weight: 600;
-            font-size: 1.1rem;
+            all: initial !important;
+            font-weight: 600 !important;
+            font-size: 18px !important;
+            color: #fff !important;
+            font-family: inherit !important;
           }
           .nt-close {
-            background: transparent;
-            border: none;
-            color: #888;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0;
-            line-height: 1;
-            transition: color 0.2s;
+            all: initial !important;
+            background: transparent !important;
+            border: none !important;
+            color: #888 !important;
+            font-size: 24px !important;
+            cursor: pointer !important;
+            padding: 0 !important;
+            line-height: 1 !important;
+            transition: color 0.2s !important;
+            font-family: Arial, sans-serif !important;
           }
           .nt-close:hover {
-            color: #fff;
+            color: #fff !important;
           }
           .nt-content {
-            padding: 1.25rem;
-            max-height: 60vh;
-            overflow-y: auto;
-            line-height: 1.5;
+            all: initial !important;
+            display: block !important;
+            padding: 20px !important;
+            max-height: 60vh !important;
+            overflow-y: auto !important;
+            line-height: 1.5 !important;
+            font-family: inherit !important;
+            color: rgba(255, 255, 255, 0.87) !important;
+            box-sizing: border-box !important;
           }
           .nt-content p {
-            margin: 0;
-            font-size: 1rem;
+            all: initial !important;
+            display: block !important;
+            margin: 0 !important;
+            font-size: 16px !important;
+            line-height: 1.5 !important;
+            color: inherit !important;
+            font-family: inherit !important;
           }
           .nt-content ul {
-            margin: 0;
-            padding-left: 1.25rem;
+            all: initial !important;
+            display: block !important;
+            margin: 0 !important;
+            padding-left: 20px !important;
+            list-style-type: disc !important;
+            color: inherit !important;
+            font-family: inherit !important;
           }
           .nt-content li {
-            margin-bottom: 0.5rem;
+            all: initial !important;
+            display: list-item !important;
+            margin-bottom: 8px !important;
+            font-size: 16px !important;
+            line-height: 1.5 !important;
+            color: inherit !important;
+            font-family: inherit !important;
           }
           .nt-content li:last-child {
-            margin-bottom: 0;
+            margin-bottom: 0 !important;
           }
           @media (prefers-color-scheme: light) {
             .nt-modal {
-              background: #ffffff;
-              color: #213547;
-              border-color: #eee;
+              background: #ffffff !important;
+              color: #213547 !important;
+              border-color: #eee !important;
             }
             .nt-header {
-              background: #f9f9f9;
-              border-color: #eee;
+              background: #f9f9f9 !important;
+              border-color: #eee !important;
+            }
+            .nt-title {
+              color: #213547 !important;
+            }
+            .nt-content {
+              color: #213547 !important;
             }
             .nt-close:hover {
-              color: #000;
+              color: #000 !important;
             }
           }
         `,
