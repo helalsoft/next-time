@@ -149,7 +149,7 @@ export default defineContentScript({
           }
           .nt-header {
             all: initial !important;
-            padding: 16px 20px !important;
+            padding: 8px 20px !important;
             display: flex !important;
             justify-content: space-between !important;
             align-items: center !important;
@@ -225,13 +225,20 @@ export default defineContentScript({
             color: #888 !important;
             font-size: 24px !important;
             cursor: pointer !important;
-            padding: 0 !important;
-            line-height: 1 !important;
-            transition: color 0.2s !important;
-            font-family: Arial, sans-serif !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 36px !important;
+            height: 36px !important;
+            border-radius: 50% !important;
+            transition: all 0.2s !important;
+            margin-right: -10px !important;
+            font-family: inherit !important;
+            padding-bottom: 2px !important;
           }
           .nt-close:hover {
             color: #fff !important;
+            background: rgba(255, 255, 255, 0.1) !important;
           }
           .nt-content {
             all: initial !important;
@@ -303,6 +310,7 @@ export default defineContentScript({
             }
             .nt-close:hover {
               color: #000 !important;
+              background: rgba(0, 0, 0, 0.05) !important;
             }
           }
         `,
