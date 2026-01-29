@@ -1,15 +1,23 @@
 # Next Time
 
-A modern Chrome extension built with [WXT](https://wxt.dev) that allows you to leave reminders on specific websites. When you visit a matched URL, it displays a clean alert to ensure you don't forget your task (e.g., checking out a shopping cart, verifying a setting).
+A modern Chrome extension built with [WXT](https://wxt.dev) that allows you to leave reminders on specific websites. When you visit a matched URL, it displays a clean, paginated alert to ensure you don't forget your task.
 
 ## Features
 
-- **Flexible URL Matching**: Set reminders for entire websites or specific pages.
+- **Flexible URL Matching**: Set reminders for entire websites (Domain), exact pages, or URL prefixes.
 - **Paginated Alerts**: Easily browse through multiple reminders on the same page with a clean navigation interface.
-- **Works Everywhere**: Automatically detects when you navigate, ensuring reminders appear even on modern websites that don't fully reload.
-- **Beautiful & Adaptive**: A polished design that integrates perfectly into any website and automatically matches your system's light or dark mode.
-- **Draft Persistence**: Your notes are saved as you type, so you never lose them if the popup window closes accidentally.
+- **Works Everywhere**: Seamlessly detects navigation in modern web apps (SPAs) to show reminders without page reloads.
+- **Polished UI**: Custom-built modal with style isolation that looks consistent across all sites and respects your system's light/dark mode.
+- **Draft Persistence**: Your notes are saved as you type, so you never lose them if the popup closes accidentally.
+- **Multi-language Support**: Fully localized in English and Turkish.
 - **Privacy Focused**: All data is stored locally in your browser. No external servers or tracking.
+- **Safety Restrictions**: Automatically disabled on internal `chrome://` pages for stability.
+
+## Use Cases
+
+- **Shopping Assistants**: Set a reminder on a shopping site's cart URL (`*/cart`, `*/checkout`) listing specific items you need to buy (e.g., "Don't forget the power bank and AA batteries").
+- **Account Verification**: Remind yourself to check specific security settings when visiting an account dashboard.
+- **Recurring Tasks**: Leave notes on banking or bill-pay sites to remember specific transaction details.
 
 ## Installation
 
@@ -22,5 +30,5 @@ A modern Chrome extension built with [WXT](https://wxt.dev) that allows you to l
 
 1. Navigate to a website where you want to leave a reminder.
 2. Click the **Next Time** icon in your toolbar.
-3. Enter your note and choose how you want it to match (Whole Site, Exact, or Starts With).
+3. Enter your note and choose how you want it to match (Domain, Exact, or Starts With).
 4. Click **Save**. The next time you visit that page, your reminder will appear!
