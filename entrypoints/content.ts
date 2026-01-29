@@ -11,6 +11,8 @@ export default defineContentScript({
     const showModal = async (matches: string[]) => {
       if (ui) ui.remove();
 
+      let currentIndex = 0;
+
       ui = await createShadowRootUi(ctx, {
         name: 'next-time-modal',
         position: 'modal',
@@ -25,34 +27,80 @@ export default defineContentScript({
           const header = document.createElement('div');
           header.className = 'nt-header';
           
+          const titleContainer = document.createElement('div');
+          titleContainer.className = 'nt-title-container';
+
           const title = document.createElement('span');
           title.className = 'nt-title';
-          title.textContent = matches.length === 1 ? t('extension_name') : t('reminder_alert_multiple', [matches.length.toString()]);
+          title.textContent = t('extension_name');
+          titleContainer.appendChild(title);
+
+          if (matches.length > 1) {
+            const pagination = document.createElement('div');
+            pagination.className = 'nt-pagination';
+            
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'nt-nav-btn';
+            prevBtn.innerHTML = '&lsaquo;';
+            
+            const count = document.createElement('span');
+            count.className = 'nt-count';
+            
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'nt-nav-btn';
+            nextBtn.innerHTML = '&rsaquo;';
+
+            const updatePagination = () => {
+              count.textContent = `${currentIndex + 1} / ${matches.length}`;
+              prevBtn.disabled = currentIndex === 0;
+              nextBtn.disabled = currentIndex === matches.length - 1;
+              
+              const content = modal.querySelector('.nt-content');
+              if (content) {
+                content.innerHTML = '';
+                const p = document.createElement('p');
+                p.textContent = matches[currentIndex];
+                content.appendChild(p);
+              }
+            };
+
+            prevBtn.onclick = () => {
+              if (currentIndex > 0) {
+                currentIndex--;
+                updatePagination();
+              }
+            };
+
+            nextBtn.onclick = () => {
+              if (currentIndex < matches.length - 1) {
+                currentIndex++;
+                updatePagination();
+              }
+            };
+
+            pagination.appendChild(prevBtn);
+            pagination.appendChild(count);
+            pagination.appendChild(nextBtn);
+            titleContainer.appendChild(pagination);
+            
+            // Initial update
+            setTimeout(updatePagination, 0);
+          }
           
           const closeBtn = document.createElement('button');
           closeBtn.className = 'nt-close';
           closeBtn.innerHTML = '&times;';
           closeBtn.onclick = () => ui.remove();
           
-          header.appendChild(title);
+          header.appendChild(titleContainer);
           header.appendChild(closeBtn);
           
           const content = document.createElement('div');
           content.className = 'nt-content';
           
-          if (matches.length === 1) {
-            const p = document.createElement('p');
-            p.textContent = matches[0];
-            content.appendChild(p);
-          } else {
-            const ul = document.createElement('ul');
-            matches.forEach(m => {
-              const li = document.createElement('li');
-              li.textContent = m;
-              ul.appendChild(li);
-            });
-            content.appendChild(ul);
-          }
+          const p = document.createElement('p');
+          p.textContent = matches[0];
+          content.appendChild(p);
           
           modal.appendChild(header);
           modal.appendChild(content);
@@ -91,7 +139,7 @@ export default defineContentScript({
             background: #242424 !important;
             color: rgba(255, 255, 255, 0.87) !important;
             width: 90% !important;
-            max-width: 450px !important;
+            max-width: 500px !important;
             border-radius: 12px !important;
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3) !important;
             overflow: hidden !important;
@@ -102,7 +150,7 @@ export default defineContentScript({
           }
           .nt-header {
             all: initial !important;
-            padding: 16px 20px !important;
+            padding: 12px 20px !important;
             display: flex !important;
             justify-content: space-between !important;
             align-items: center !important;
@@ -111,12 +159,59 @@ export default defineContentScript({
             font-family: inherit !important;
             box-sizing: border-box !important;
           }
+          .nt-title-container {
+            all: initial !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 16px !important;
+            font-family: inherit !important;
+          }
           .nt-title {
             all: initial !important;
             font-weight: 600 !important;
-            font-size: 18px !important;
+            font-size: 16px !important;
             color: #fff !important;
             font-family: inherit !important;
+          }
+          .nt-pagination {
+            all: initial !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            background: #333 !important;
+            padding: 4px 12px !important;
+            border-radius: 20px !important;
+            font-family: inherit !important;
+          }
+          .nt-count {
+            all: initial !important;
+            font-size: 13px !important;
+            color: #ccc !important;
+            font-family: inherit !important;
+            min-width: 40px !important;
+            text-align: center !important;
+          }
+          .nt-nav-btn {
+            all: initial !important;
+            background: transparent !important;
+            border: none !important;
+            color: #fff !important;
+            font-size: 18px !important;
+            cursor: pointer !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 24px !important;
+            height: 24px !important;
+            border-radius: 50% !important;
+            transition: background 0.2s !important;
+          }
+          .nt-nav-btn:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.1) !important;
+          }
+          .nt-nav-btn:disabled {
+            opacity: 0.3 !important;
+            cursor: not-allowed !important;
           }
           .nt-close {
             all: initial !important;
@@ -136,10 +231,10 @@ export default defineContentScript({
           .nt-content {
             all: initial !important;
             display: block !important;
-            padding: 20px !important;
-            max-height: 60vh !important;
+            padding: 24px !important;
+            height: 500px !important;
             overflow-y: auto !important;
-            line-height: 1.5 !important;
+            line-height: 1.6 !important;
             font-family: inherit !important;
             color: rgba(255, 255, 255, 0.87) !important;
             box-sizing: border-box !important;
@@ -149,32 +244,10 @@ export default defineContentScript({
             display: block !important;
             margin: 0 !important;
             font-size: 16px !important;
-            line-height: 1.5 !important;
+            line-height: 1.6 !important;
             color: inherit !important;
             font-family: inherit !important;
             white-space: pre-wrap !important;
-          }
-          .nt-content ul {
-            all: initial !important;
-            display: block !important;
-            margin: 0 !important;
-            padding-left: 20px !important;
-            list-style-type: disc !important;
-            color: inherit !important;
-            font-family: inherit !important;
-          }
-          .nt-content li {
-            all: initial !important;
-            display: list-item !important;
-            margin-bottom: 8px !important;
-            font-size: 16px !important;
-            line-height: 1.5 !important;
-            color: inherit !important;
-            font-family: inherit !important;
-            white-space: pre-wrap !important;
-          }
-          .nt-content li:last-child {
-            margin-bottom: 0 !important;
           }
           @media (prefers-color-scheme: light) {
             .nt-modal {
@@ -188,6 +261,18 @@ export default defineContentScript({
             }
             .nt-title {
               color: #213547 !important;
+            }
+            .nt-pagination {
+              background: #f0f0f0 !important;
+            }
+            .nt-count {
+              color: #666 !important;
+            }
+            .nt-nav-btn {
+              color: #213547 !important;
+            }
+            .nt-nav-btn:hover:not(:disabled) {
+              background: rgba(0, 0, 0, 0.05) !important;
             }
             .nt-content {
               color: #213547 !important;
