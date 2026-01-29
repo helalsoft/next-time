@@ -63,28 +63,31 @@ export default defineContentScript({
         },
         css: `
           .nt-modal-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            font-family: Inter, system-ui, sans-serif;
-            pointer-events: auto;
+            all: initial !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: rgba(0, 0, 0, 0.5) !important;
+            backdrop-filter: blur(4px) !important;
+            font-family: Inter, system-ui, sans-serif !important;
+            pointer-events: auto !important;
+            z-index: 2147483647 !important;
           }
           .nt-modal {
-            background: #242424;
-            color: rgba(255, 255, 255, 0.87);
-            width: 90%;
-            max-width: 450px;
-            border-radius: 12px;
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3);
-            overflow: hidden;
-            border: 1px solid #444;
+            background: #242424 !important;
+            color: rgba(255, 255, 255, 0.87) !important;
+            width: 90% !important;
+            max-width: 450px !important;
+            border-radius: 12px !important;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3) !important;
+            overflow: hidden !important;
+            border: 1px solid #444 !important;
+            display: block !important;
           }
           .nt-header {
             padding: 1rem 1.25rem;
