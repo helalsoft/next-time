@@ -72,6 +72,15 @@ saveButton.addEventListener('click', async () => {
       matchType,
       note,
     });
+    
+    // Notify the active tab to refresh reminders
+    const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+    if (tabs[0]?.id) {
+      browser.tabs.sendMessage(tabs[0].id, { type: 'REFRESH_REMINDERS' }).catch(() => {
+        // Ignore if content script not ready
+      });
+    }
+
     showStatus(t('status_saved'), 'success');
     noteTextarea.value = '';
     // Clear draft after successful save

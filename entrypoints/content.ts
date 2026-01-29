@@ -165,6 +165,7 @@ export default defineContentScript({
       
       // Prevent duplicate alerts for the same URL (common in SPA navigation events)
       if (currentUrl === lastAlertedUrl) return;
+      lastAlertedUrl = currentUrl;
 
       const reminders = await remindersStorage.getValue();
       const matches: string[] = [];
@@ -176,16 +177,25 @@ export default defineContentScript({
       }
 
       if (matches.length > 0) {
-        lastAlertedUrl = currentUrl;
         // Use a slight delay to ensure the page is visible
         setTimeout(() => {
-          showModal(matches);
+          // Double check URL hasn't changed during the delay (for SPAs)
+          if (window.location.href === currentUrl) {
+            showModal(matches);
+          }
         }, 500);
       }
     };
 
     // Initial check on page load
     await checkAndShowReminders();
+
+    // Listen for SPA navigation (back/forward)
+    const handlePopstate = () => checkAndShowReminders();
+    window.addEventListener('popstate', handlePopstate);
+    ctx.onInvalidated(() => {
+      window.removeEventListener('popstate', handlePopstate);
+    });
 
     // Listen for messages from background script about URL changes (SPAs)
     browser.runtime.onMessage.addListener((message: { type: string }) => {
