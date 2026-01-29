@@ -1,5 +1,5 @@
 import './style.css';
-import { addReminder } from '@/utils/storage';
+import { addReminder, draftStorage, PopupDraft } from '@/utils/storage';
 import { MatchType } from '@/utils/types';
 import { setupI18n, t } from '@/utils/i18n';
 
@@ -12,13 +12,40 @@ const noteTextarea = document.querySelector<HTMLTextAreaElement>('#note')!;
 const saveButton = document.querySelector<HTMLButtonElement>('#save')!;
 const statusDiv = document.querySelector<HTMLDivElement>('#status')!;
 
-// Pre-fill current URL
-browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
-  const currentTab = tabs[0];
-  if (currentTab?.url) {
-    urlInput.value = currentTab.url;
+// Function to save current state as draft
+async function saveDraft() {
+  const draft: PopupDraft = {
+    url: urlInput.value,
+    matchType: matchTypeSelect.value as MatchType,
+    note: noteTextarea.value,
+  };
+  await draftStorage.setValue(draft);
+}
+
+// Restore draft or pre-fill current URL
+async function init() {
+  const draft = await draftStorage.getValue();
+  
+  if (draft) {
+    urlInput.value = draft.url;
+    matchTypeSelect.value = draft.matchType;
+    noteTextarea.value = draft.note;
+  } else {
+    // Only pre-fill URL if no draft exists
+    const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+    const currentTab = tabs[0];
+    if (currentTab?.url) {
+      urlInput.value = currentTab.url;
+    }
   }
-});
+
+  // Add listeners to save draft on any change
+  [urlInput, matchTypeSelect, noteTextarea].forEach(el => {
+    el.addEventListener('input', saveDraft);
+  });
+}
+
+init();
 
 saveButton.addEventListener('click', async () => {
   const url = urlInput.value.trim();
@@ -38,6 +65,8 @@ saveButton.addEventListener('click', async () => {
     });
     showStatus(t('status_saved'), 'success');
     noteTextarea.value = '';
+    // Clear draft after successful save
+    await draftStorage.setValue(null);
     
     // Optionally close popup after save
     // setTimeout(() => window.close(), 1500);

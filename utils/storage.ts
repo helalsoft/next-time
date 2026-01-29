@@ -5,6 +5,16 @@ export const remindersStorage = storage.defineItem<Reminder[]>('local:reminders'
   defaultValue: [],
 });
 
+export interface PopupDraft {
+  url: string;
+  note: string;
+  matchType: MatchType;
+}
+
+export const draftStorage = storage.defineItem<PopupDraft | null>('local:popup_draft', {
+  defaultValue: null,
+});
+
 export async function addReminder(reminder: Omit<Reminder, 'id' | 'createdAt'>) {
   const reminders = await remindersStorage.getValue();
   const newReminder: Reminder = {
