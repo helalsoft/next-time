@@ -1,0 +1,1 @@
+- CRITICAL: ALWAYS use codebase-retrieval as the primary tool for gathering context.
