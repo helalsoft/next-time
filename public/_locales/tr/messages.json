@@ -1,0 +1,93 @@
+{
+  "extension_name": {
+    "message": "Next Time"
+  },
+  "extension_description": {
+    "message": "Belirli web sitelerine hatırlatıcılar bırakın."
+  },
+  "add_reminder": {
+    "message": "Hatırlatıcı Ekle"
+  },
+  "url_label": {
+    "message": "URL:"
+  },
+  "match_type_label": {
+    "message": "Eşleşme Türü:"
+  },
+  "match_type_domain": {
+    "message": "Tüm Site (Alan Adı)"
+  },
+  "match_type_exact": {
+    "message": "Tam Eşleşme"
+  },
+  "match_type_prefix": {
+    "message": "Şununla Başlar"
+  },
+  "note_label": {
+    "message": "Not:"
+  },
+  "note_placeholder": {
+    "message": "Hatırlatıcınızı girin..."
+  },
+  "save_button": {
+    "message": "Hatırlatıcıyı Kaydet"
+  },
+  "manage_link": {
+    "message": "Hatırlatıcıları Yönet"
+  },
+  "status_fill_fields": {
+    "message": "Lütfen tüm alanları doldurun"
+  },
+  "status_saved": {
+    "message": "Hatırlatıcı kaydedildi!"
+  },
+  "status_error": {
+    "message": "Hatırlatıcı kaydedilirken hata oluştu"
+  },
+  "dashboard_title": {
+    "message": "Hatırlatıcı Paneli"
+  },
+  "refresh_button": {
+    "message": "Listeyi Yenile"
+  },
+  "table_url": {
+    "message": "URL Deseni"
+  },
+  "table_match_type": {
+    "message": "Eşleşme Türü"
+  },
+  "table_note": {
+    "message": "Not"
+  },
+  "table_created": {
+    "message": "Oluşturulma Tarihi"
+  },
+  "table_actions": {
+    "message": "İşlemler"
+  },
+  "delete_button": {
+    "message": "Sil"
+  },
+  "delete_confirm": {
+    "message": "Bu hatırlatıcıyı silmek istediğinizden emin misiniz?"
+  },
+  "no_reminders": {
+    "message": "Hatırlatıcı bulunamadı. Uzantı penceresinden yeni bir tane ekleyin!"
+  },
+  "reminder_alert_single": {
+    "message": "Hatırlatıcı: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "reminder_alert_multiple": {
+    "message": "$1 adet hatırlatıcınız var:",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  }
+}

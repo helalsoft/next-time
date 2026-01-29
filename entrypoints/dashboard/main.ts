@@ -1,6 +1,10 @@
 import './style.css';
 import { getReminders, removeReminder } from '@/utils/storage';
 import { Reminder } from '@/utils/types';
+import { setupI18n, t } from '@/utils/i18n';
+
+// Initialize i18n
+setupI18n();
 
 const remindersList = document.querySelector<HTMLTableSectionElement>('#reminders-list')!;
 const noRemindersDiv = document.querySelector<HTMLDivElement>('#no-reminders')!;
@@ -22,11 +26,11 @@ async function loadReminders() {
       (reminder: Reminder) => `
       <tr data-id="${reminder.id}">
         <td>${escapeHtml(reminder.url)}</td>
-        <td><span class="match-tag">${reminder.matchType}</span></td>
+        <td><span class="match-tag">${t('match_type_' + reminder.matchType)}</span></td>
         <td>${escapeHtml(reminder.note)}</td>
         <td>${new Date(reminder.createdAt).toLocaleString()}</td>
         <td>
-          <button class="delete-btn" data-id="${reminder.id}">Delete</button>
+          <button class="delete-btn" data-id="${reminder.id}">${t('delete_button')}</button>
         </td>
       </tr>
     `
@@ -37,7 +41,7 @@ async function loadReminders() {
   document.querySelectorAll('.delete-btn').forEach((btn) => {
     btn.addEventListener('click', async (e) => {
       const id = (e.target as HTMLButtonElement).dataset.id;
-      if (id && confirm('Are you sure you want to delete this reminder?')) {
+      if (id && confirm(t('delete_confirm'))) {
         await removeReminder(id);
         loadReminders();
       }

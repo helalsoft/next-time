@@ -1,5 +1,6 @@
 import { remindersStorage } from '@/utils/storage';
 import { matchesUrl } from '@/utils/matching';
+import { t } from '@/utils/i18n';
 
 export default defineContentScript({
   matches: ['<all_urls>'],
@@ -18,8 +19,8 @@ export default defineContentScript({
       // Use a slight delay to ensure the page is visible before the blocking alert
       setTimeout(() => {
         const message = matches.length === 1 
-          ? `Reminder: ${matches[0]}`
-          : `You have ${matches.length} reminders:\n\n${matches.map((m, i) => `${i + 1}. ${m}`).join('\n')}`;
+          ? t('reminder_alert_single', [matches[0]])
+          : `${t('reminder_alert_multiple', [matches.length.toString()])}\n\n${matches.map((m, i) => `${i + 1}. ${m}`).join('\n')}`;
         alert(message);
       }, 500);
     }

@@ -1,0 +1,93 @@
+{
+  "extension_name": {
+    "message": "Next Time"
+  },
+  "extension_description": {
+    "message": "Leave reminders on specific websites."
+  },
+  "add_reminder": {
+    "message": "Add Reminder"
+  },
+  "url_label": {
+    "message": "URL:"
+  },
+  "match_type_label": {
+    "message": "Match Type:"
+  },
+  "match_type_domain": {
+    "message": "Whole Site (Domain)"
+  },
+  "match_type_exact": {
+    "message": "Exact Match"
+  },
+  "match_type_prefix": {
+    "message": "Starts With"
+  },
+  "note_label": {
+    "message": "Note:"
+  },
+  "note_placeholder": {
+    "message": "Enter your reminder..."
+  },
+  "save_button": {
+    "message": "Save Reminder"
+  },
+  "manage_link": {
+    "message": "Manage Reminders"
+  },
+  "status_fill_fields": {
+    "message": "Please fill in all fields"
+  },
+  "status_saved": {
+    "message": "Reminder saved!"
+  },
+  "status_error": {
+    "message": "Error saving reminder"
+  },
+  "dashboard_title": {
+    "message": "Reminder Dashboard"
+  },
+  "refresh_button": {
+    "message": "Refresh List"
+  },
+  "table_url": {
+    "message": "URL Pattern"
+  },
+  "table_match_type": {
+    "message": "Match Type"
+  },
+  "table_note": {
+    "message": "Note"
+  },
+  "table_created": {
+    "message": "Created At"
+  },
+  "table_actions": {
+    "message": "Actions"
+  },
+  "delete_button": {
+    "message": "Delete"
+  },
+  "delete_confirm": {
+    "message": "Are you sure you want to delete this reminder?"
+  },
+  "no_reminders": {
+    "message": "No reminders found. Add some from the extension popup!"
+  },
+  "reminder_alert_single": {
+    "message": "Reminder: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "reminder_alert_multiple": {
+    "message": "You have $1 reminders:",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  }
+}

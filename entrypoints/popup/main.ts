@@ -1,6 +1,10 @@
 import './style.css';
 import { addReminder } from '@/utils/storage';
 import { MatchType } from '@/utils/types';
+import { setupI18n, t } from '@/utils/i18n';
+
+// Initialize i18n
+setupI18n();
 
 const urlInput = document.querySelector<HTMLInputElement>('#url')!;
 const matchTypeSelect = document.querySelector<HTMLSelectElement>('#matchType')!;
@@ -22,7 +26,7 @@ saveButton.addEventListener('click', async () => {
   const note = noteTextarea.value.trim();
 
   if (!url || !note) {
-    showStatus('Please fill in all fields', 'error');
+    showStatus(t('status_fill_fields'), 'error');
     return;
   }
 
@@ -32,13 +36,13 @@ saveButton.addEventListener('click', async () => {
       matchType,
       note,
     });
-    showStatus('Reminder saved!', 'success');
+    showStatus(t('status_saved'), 'success');
     noteTextarea.value = '';
     
     // Optionally close popup after save
     // setTimeout(() => window.close(), 1500);
   } catch (e) {
-    showStatus('Error saving reminder', 'error');
+    showStatus(t('status_error'), 'error');
     console.error(e);
   }
 });

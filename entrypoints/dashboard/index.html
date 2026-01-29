@@ -7,25 +7,25 @@
 </head>
 <body>
     <div id="app">
-        <h1>Reminder Dashboard</h1>
+        <h1 data-i18n="dashboard_title">Reminder Dashboard</h1>
         <div class="actions">
-            <button id="refresh">Refresh List</button>
+            <button id="refresh" data-i18n="refresh_button">Refresh List</button>
         </div>
         <table id="reminders-table">
             <thead>
                 <tr>
-                    <th>URL Pattern</th>
-                    <th>Match Type</th>
-                    <th>Note</th>
-                    <th>Created At</th>
-                    <th>Actions</th>
+                    <th data-i18n="table_url">URL Pattern</th>
+                    <th data-i18n="table_match_type">Match Type</th>
+                    <th data-i18n="table_note">Note</th>
+                    <th data-i18n="table_created">Created At</th>
+                    <th data-i18n="table_actions">Actions</th>
                 </tr>
             </thead>
             <tbody id="reminders-list">
                 <!-- Reminders will be injected here -->
             </tbody>
         </table>
-        <div id="no-reminders" style="display: none; text-align: center; margin-top: 2rem;">
+        <div id="no-reminders" data-i18n="no_reminders" style="display: none; text-align: center; margin-top: 2rem;">
             No reminders found. Add some from the extension popup!
         </div>
     </div>
