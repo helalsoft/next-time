@@ -62,6 +62,14 @@ export default defineContentScript({
           return wrapper;
         },
         css: `
+          :host {
+            all: initial !important;
+            display: block !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            z-index: 2147483647 !important;
+          }
           .nt-modal-wrapper {
             all: initial !important;
             position: fixed !important;
@@ -76,7 +84,6 @@ export default defineContentScript({
             backdrop-filter: blur(4px) !important;
             font-family: Inter, system-ui, sans-serif !important;
             pointer-events: auto !important;
-            z-index: 2147483647 !important;
           }
           .nt-modal {
             background: #242424 !important;
