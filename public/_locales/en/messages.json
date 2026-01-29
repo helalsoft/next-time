@@ -83,6 +83,9 @@
   "cancel_button": {
     "message": "Cancel"
   },
+  "close_button": {
+    "message": "Close"
+  },
   "no_reminders": {
     "message": "No reminders found. Add some from the extension popup!"
   },

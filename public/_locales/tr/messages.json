@@ -83,6 +83,9 @@
   "cancel_button": {
     "message": "İptal"
   },
+  "close_button": {
+    "message": "Kapat"
+  },
   "no_reminders": {
     "message": "Hatırlatıcı bulunamadı. Uzantı penceresinden yeni bir tane ekleyin!"
   },
