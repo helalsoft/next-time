@@ -1,39 +1,26 @@
 # Next Time
 
-A modern Chrome extension built with [WXT](https://wxt.dev) that allows you to leave reminders on specific websites. When you visit a matched URL, it displays a native blocking alert to ensure you don't forget your task (e.g., checking out a shopping cart, verifying a setting).
+A modern Chrome extension built with [WXT](https://wxt.dev) that allows you to leave reminders on specific websites. When you visit a matched URL, it displays a clean alert to ensure you don't forget your task (e.g., checking out a shopping cart, verifying a setting).
 
 ## Features
 
-- **Flexible URL Matching**: Choose between Whole Site (Domain), Exact Match, or Starts With patterns.
-- **Smart Alerts**: If multiple reminders match a single page, they are aggregated into a single, clean, numbered list.
-- **Draft Persistence**: Never lose your note if the popup accidentally closes; your input is saved as you type and restored automatically.
-- **Multi-language Support**: Fully localized in English and Turkish.
-- **Theme Support**: UI adapts perfectly to both Light and Dark system modes.
+- **Flexible URL Matching**: Set reminders for entire websites or specific pages.
+- **Paginated Alerts**: Easily browse through multiple reminders on the same page with a clean navigation interface.
+- **Works Everywhere**: Automatically detects when you navigate, ensuring reminders appear even on modern websites that don't fully reload.
+- **Beautiful & Adaptive**: A polished design that integrates perfectly into any website and automatically matches your system's light or dark mode.
+- **Draft Persistence**: Your notes are saved as you type, so you never lose them if the popup window closes accidentally.
 - **Privacy Focused**: All data is stored locally in your browser. No external servers or tracking.
-- **Safety Restrictions**: Automatically disabled on internal `chrome://` pages to ensure stability.
 
 ## Installation
 
-1. Download or clone this repository.
-2. Run `bun install` to install dependencies.
-3. Run `bun run build` to compile the extension.
-4. Open Chrome and navigate to `chrome://extensions`.
-5. Enable "Developer mode" and click "Load unpacked".
-6. Select the `.output/chrome-mv3` folder.
+1. Download the latest release.
+2. Open Chrome and go to `chrome://extensions/`.
+3. Enable "Developer mode" in the top right.
+4. Click "Load unpacked" and select the `.output/chrome-mv3` folder.
 
-## Development
+## Usage
 
-```bash
-# Start development server
-bun run dev
-
-# Type check
-bun run compile
-
-# Build for production
-bun run build
-```
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+1. Navigate to a website where you want to leave a reminder.
+2. Click the **Next Time** icon in your toolbar.
+3. Enter your note and choose how you want it to match (Whole Site, Exact, or Starts With).
+4. Click **Save**. The next time you visit that page, your reminder will appear!
