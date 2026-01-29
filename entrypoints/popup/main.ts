@@ -1,4 +1,3 @@
-import './style.css';
 import { addReminder, draftStorage, PopupDraft } from '@/utils/storage';
 import { MatchType } from '@/utils/types';
 import { setupI18n, t } from '@/utils/i18n';

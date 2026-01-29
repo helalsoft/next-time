@@ -1,4 +1,3 @@
-import './style.css';
 import { getReminders, removeReminder, updateReminder, setReminders } from '@/utils/storage';
 import { Reminder } from '@/utils/types';
 import { setupI18n, t } from '@/utils/i18n';
