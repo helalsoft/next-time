@@ -12,6 +12,10 @@ export default defineConfig({
     },
   },
   runner: {
-    startUrls: ['https://www.google.com'],
+    startUrls: [
+      'https://www.google.com',
+      'https://www.hepsiburada.com',
+      'https://www.migros.com.tr'
+    ],
   },
 });
