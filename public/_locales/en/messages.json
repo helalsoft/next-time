@@ -71,8 +71,17 @@
   "delete_button": {
     "message": "Delete"
   },
+  "edit_button": {
+    "message": "Edit"
+  },
   "delete_confirm": {
     "message": "Are you sure you want to delete this reminder?"
+  },
+  "edit_reminder": {
+    "message": "Edit Reminder"
+  },
+  "cancel_button": {
+    "message": "Cancel"
   },
   "no_reminders": {
     "message": "No reminders found. Add some from the extension popup!"

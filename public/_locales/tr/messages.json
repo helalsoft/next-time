@@ -71,8 +71,17 @@
   "delete_button": {
     "message": "Sil"
   },
+  "edit_button": {
+    "message": "Düzenle"
+  },
   "delete_confirm": {
     "message": "Bu hatırlatıcıyı silmek istediğinizden emin misiniz?"
+  },
+  "edit_reminder": {
+    "message": "Hatırlatıcıyı Düzenle"
+  },
+  "cancel_button": {
+    "message": "İptal"
   },
   "no_reminders": {
     "message": "Hatırlatıcı bulunamadı. Uzantı penceresinden yeni bir tane ekleyin!"

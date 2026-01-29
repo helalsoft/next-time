@@ -29,6 +29,34 @@
             No reminders found. Add some from the extension popup!
         </div>
     </div>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <h2 data-i18n="edit_reminder">Edit Reminder</h2>
+            <div class="form-group">
+                <label for="edit-url" data-i18n="url_label">URL:</label>
+                <input type="text" id="edit-url" />
+            </div>
+            <div class="form-group">
+                <label for="edit-matchType" data-i18n="match_type_label">Match Type:</label>
+                <select id="edit-matchType">
+                    <option value="domain" data-i18n="match_type_domain">Whole Site (Domain)</option>
+                    <option value="exact" data-i18n="match_type_exact">Exact Match</option>
+                    <option value="prefix" data-i18n="match_type_prefix">Starts With</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="edit-note" data-i18n="note_label">Note:</label>
+                <textarea id="edit-note"></textarea>
+            </div>
+            <div class="modal-actions">
+                <button id="cancel-edit" data-i18n="cancel_button">Cancel</button>
+                <button id="save-edit" class="primary-btn" data-i18n="save_button">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
     <script type="module" src="./main.ts"></script>
 </body>
 </html>
