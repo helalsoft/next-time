@@ -78,7 +78,7 @@
     "message": "Hatırlatıcı bulunamadı. Uzantı penceresinden yeni bir tane ekleyin!"
   },
   "reminder_alert_single": {
-    "message": "Hatırlatıcı: $1",
+    "message": "$1",
     "placeholders": {
       "1": {
         "content": "$1"

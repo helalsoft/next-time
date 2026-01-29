@@ -78,7 +78,7 @@
     "message": "No reminders found. Add some from the extension popup!"
   },
   "reminder_alert_single": {
-    "message": "Reminder: $1",
+    "message": "$1",
     "placeholders": {
       "1": {
         "content": "$1"
