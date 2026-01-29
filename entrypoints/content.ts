@@ -237,7 +237,7 @@ export default defineContentScript({
             all: initial !important;
             display: block !important;
             padding: 24px !important;
-            height: 500px !important;
+            height: 300px !important;
             overflow-y: auto !important;
             line-height: 1.6 !important;
             font-family: inherit !important;
