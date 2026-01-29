@@ -13,6 +13,7 @@ const exportButton = document.querySelector<HTMLButtonElement>('#export-btn')!;
 const importButton = document.querySelector<HTMLButtonElement>('#import-btn')!;
 const importInput = document.querySelector<HTMLInputElement>('#import-input')!;
 const searchInput = document.querySelector<HTMLInputElement>('#search-input')!;
+const domainFilter = document.querySelector<HTMLSelectElement>('#domain-filter')!;
 
 // Modal elements
 const editModal = document.querySelector<HTMLDivElement>('#edit-modal')!;
@@ -27,17 +28,77 @@ let allReminders: Reminder[] = [];
 
 async function loadReminders() {
   allReminders = await getReminders();
+  updateDomainFilter();
   renderReminders();
+}
+
+function getDomainFromUrl(url: string): string {
+  try {
+    let hostname = '';
+    if (url.includes('://')) {
+      // Use a regex to extract hostname safely even if it contains wildcards
+      const match = url.match(/:\/\/(.[^/]+)/);
+      hostname = match ? match[1] : '';
+    } else {
+      hostname = url.split('/')[0];
+    }
+    
+    // Remove wildcards and www
+    hostname = hostname.replace(/^\*\./, '').replace(/^www\./, '').toLowerCase();
+    
+    const parts = hostname.split('.');
+    if (parts.length > 2) {
+      // Heuristic for common multi-part TLDs (e.g., .co.uk, .com.tr)
+      const secondToLast = parts[parts.length - 2];
+      const multiPartTlds = ['com', 'co', 'net', 'org', 'gov', 'edu', 'asn', 'id', 'web'];
+      
+      if (multiPartTlds.includes(secondToLast) && parts.length >= 3) {
+        return parts.slice(-3).join('.');
+      }
+      return parts.slice(-2).join('.');
+    }
+    return hostname;
+  } catch (e) {
+    return url;
+  }
+}
+
+function updateDomainFilter() {
+  const selectedDomain = domainFilter.value;
+  const domains = new Set<string>();
+  
+  allReminders.forEach(reminder => {
+    domains.add(getDomainFromUrl(reminder.url));
+  });
+
+  const sortedDomains = Array.from(domains).sort();
+  
+  // Keep the "All Domains" option
+  domainFilter.innerHTML = `<option value="">${t('all_domains')}</option>`;
+  
+  sortedDomains.forEach(domain => {
+    const option = document.createElement('option');
+    option.value = domain;
+    option.textContent = domain;
+    if (domain === selectedDomain) {
+      option.selected = true;
+    }
+    domainFilter.appendChild(option);
+  });
 }
 
 function renderReminders() {
   const searchQuery = searchInput.value.toLowerCase().trim();
+  const selectedDomain = domainFilter.value;
   
   const filteredReminders = allReminders.filter(reminder => {
-    return (
+    const matchesSearch = 
       reminder.url.toLowerCase().includes(searchQuery) ||
-      reminder.note.toLowerCase().includes(searchQuery)
-    );
+      reminder.note.toLowerCase().includes(searchQuery);
+    
+    const matchesDomain = !selectedDomain || getDomainFromUrl(reminder.url) === selectedDomain;
+    
+    return matchesSearch && matchesDomain;
   });
 
   if (filteredReminders.length === 0) {
@@ -91,6 +152,7 @@ function renderReminders() {
 }
 
 searchInput.addEventListener('input', renderReminders);
+domainFilter.addEventListener('change', renderReminders);
 
 function openEditModal(reminder: Reminder) {
   currentlyEditingId = reminder.id;

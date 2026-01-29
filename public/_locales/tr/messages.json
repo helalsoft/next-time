@@ -110,20 +110,7 @@
   "no_search_results": {
     "message": "Aramanızla eşleşen hatırlatıcı bulunamadı."
   },
-  "reminder_alert_single": {
-    "message": "$1",
-    "placeholders": {
-      "1": {
-        "content": "$1"
-      }
-    }
-  },
-  "reminder_alert_multiple": {
-    "message": "$1 adet hatırlatıcınız var:",
-    "placeholders": {
-      "1": {
-        "content": "$1"
-      }
-    }
+  "all_domains": {
+    "message": "Tüm Alan Adları"
   }
 }

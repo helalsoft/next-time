@@ -60,14 +60,16 @@ h1 {
   gap: 0.5rem;
 }
 
-.search-box {
-  margin-right: auto;
+.search-controls {
+  display: flex;
+  gap: 0.5rem;
   flex: 1;
-  max-width: 400px;
+  align-items: center;
 }
 
-.search-box input {
-  width: 100%;
+#search-input {
+  flex: 1;
+  max-width: 350px;
   padding: 0.6rem 1rem;
   border-radius: 6px;
   border: 1px solid var(--border-color);
@@ -78,7 +80,23 @@ h1 {
   transition: border-color 0.2s;
 }
 
-.search-box input:focus {
+#search-input:focus {
+  border-color: #646cff;
+}
+
+.filter-box select {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--table-bg);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.filter-box select:focus {
   border-color: #646cff;
 }
 

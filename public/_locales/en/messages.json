@@ -110,20 +110,7 @@
   "no_search_results": {
     "message": "No reminders match your search."
   },
-  "reminder_alert_single": {
-    "message": "$1",
-    "placeholders": {
-      "1": {
-        "content": "$1"
-      }
-    }
-  },
-  "reminder_alert_multiple": {
-    "message": "You have $1 reminders:",
-    "placeholders": {
-      "1": {
-        "content": "$1"
-      }
-    }
+  "all_domains": {
+    "message": "All Domains"
   }
 }
