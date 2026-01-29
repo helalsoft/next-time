@@ -244,6 +244,19 @@ export default defineContentScript({
             color: rgba(255, 255, 255, 0.87) !important;
             box-sizing: border-box !important;
           }
+          .nt-content::-webkit-scrollbar {
+            width: 8px !important;
+          }
+          .nt-content::-webkit-scrollbar-track {
+            background: transparent !important;
+          }
+          .nt-content::-webkit-scrollbar-thumb {
+            background: #444 !important;
+            border-radius: 4px !important;
+          }
+          .nt-content::-webkit-scrollbar-thumb:hover {
+            background: #555 !important;
+          }
           .nt-content p {
             all: initial !important;
             display: block !important;
@@ -281,6 +294,12 @@ export default defineContentScript({
             }
             .nt-content {
               color: #213547 !important;
+            }
+            .nt-content::-webkit-scrollbar-thumb {
+              background: #ccc !important;
+            }
+            .nt-content::-webkit-scrollbar-thumb:hover {
+              background: #bbb !important;
             }
             .nt-close:hover {
               color: #000 !important;
