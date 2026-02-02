@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Time - Style Guide</title>
+    <style>
+        :root {
+            font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            font-weight: 400;
+
+            --bg-color: #ffffff;
+            --text-color: #213547;
+            --table-bg: #f9f9f9;
+            --header-bg: #eee;
+            --border-color: #ddd;
+            
+            --btn-bg: #eee;
+            --btn-text: #213547;
+            --btn-hover: #ddd;
+            
+            --primary-color: #646cff;
+            --primary-hover: #535bf2;
+            --primary-text: #ffffff;
+
+            --delete-bg: #ef4444;
+            --delete-text: #ffffff;
+            --delete-hover: #dc2626;
+            
+            --tag-bg: #eee;
+            --input-bg: #f9f9f9;
+            --input-border: #999;
+            
+            --select-arrow: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23213547' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+
+            color-scheme: light dark;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #242424;
+                --text-color: rgba(255, 255, 255, 0.87);
+                --table-bg: #333;
+                --header-bg: #1a1a1a;
+                --border-color: #444;
+                
+                --btn-bg: #1a1a1a;
+                --btn-text: #ffffff;
+                --btn-hover: #333;
+                
+                --delete-bg: #b91c1c;
+                --delete-text: #ffffff;
+                --delete-hover: #991b1b;
+                
+                --tag-bg: #444;
+                --input-bg: #333;
+                --input-border: #666;
+
+                --select-arrow: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 2rem;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            margin-top: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Color Palette Grid */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .color-swatch {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            background-color: var(--table-bg);
+            text-align: center;
+        }
+
+        .swatch-preview {
+            height: 60px;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .swatch-label {
+            font-size: 0.9rem;
+            font-family: monospace;
+        }
+
+        /* Typography */
+        .type-scale div {
+            margin-bottom: 1rem;
+        }
+        
+        .code-block {
+            background-color: var(--table-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: monospace;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Components */
+        .component-section {
+            margin-bottom: 3rem;
+        }
+
+        .example-row {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: var(--table-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Reused Component Styles */
+        button {
+            border-radius: 4px;
+            border: 1px solid transparent;
+            padding: 0.5em 1em;
+            font-size: 0.9em;
+            font-weight: 500;
+            font-family: inherit;
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        button:hover {
+            background-color: var(--btn-hover);
+            border-color: var(--primary-color);
+        }
+
+        button.primary-btn {
+            background-color: var(--primary-color);
+            color: var(--primary-text);
+        }
+
+        button.primary-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        button.delete-btn {
+            background-color: var(--delete-bg);
+            color: var(--delete-text);
+        }
+
+        button.delete-btn:hover {
+            background-color: var(--delete-hover);
+            border-color: #f44336;
+        }
+
+        input, select, textarea {
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--input-border);
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            font-size: 0.9rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: var(--select-arrow);
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1.2em;
+            padding-right: 2.5rem;
+        }
+
+        select option {
+            padding: 0.6rem 1rem;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary-color);
+        }
+
+        /* Reminder Overlay Styles (v3 - Minimalist Toast) */
+        .nt-demo-wrapper {
+            position: relative;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1000') center/cover;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+            padding: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .nt-modal {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            width: 320px;
+            border-radius: 20px;
+            box-shadow: 
+                0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                0 4px 6px -2px rgba(0, 0, 0, 0.05),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', system-ui, sans-serif;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            padding: 20px;
+            gap: 12px;
+            animation: toastIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .nt-modal {
+                background: rgba(30, 30, 30, 0.75);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        @keyframes toastIn {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .nt-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nt-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary-color);
+        }
+
+        .nt-brand svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .nt-close-minimal {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: #9ca3af;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            padding: 0;
+        }
+
+        .nt-close-minimal:hover {
+            background: rgba(0,0,0,0.05);
+            color: var(--text-color);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .nt-close-minimal:hover { background: rgba(255,255,255,0.1); }
+        }
+
+        .nt-content-modern {
+            font-size: 15px;
+            line-height: 1.5;
+            color: var(--text-color);
+            margin: 4px 0;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .nt-footer-minimal {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 4px;
+        }
+
+        .nt-pill-pagination {
+            display: flex;
+            align-items: center;
+            background: rgba(0,0,0,0.05);
+            padding: 2px 4px;
+            border-radius: 10px;
+            gap: 2px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .nt-pill-pagination { background: rgba(255,255,255,0.05); }
+        }
+
+        .nt-nav-dot {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-color);
+            padding: 4px;
+            border-radius: 6px;
+            display: flex;
+            transition: all 0.2s;
+        }
+
+        .nt-nav-dot:hover:not(:disabled) {
+            background: rgba(0,0,0,0.1);
+        }
+
+        .nt-nav-dot svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .nt-action-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nt-delete-minimal {
+            background: rgba(0,0,0,0.05);
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            padding: 0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .nt-delete-minimal { background: rgba(255,255,255,0.05); }
+        }
+
+        .nt-delete-minimal:hover {
+            background: var(--delete-bg);
+            color: #fff;
+        }
+
+        /* Expandable Variation */
+        .nt-content-modern.text-clamped {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 4.5em; /* approx 3 lines */
+        }
+
+        .nt-expand-btn {
+            background: transparent;
+            border: none;
+            color: var(--primary-color);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0;
+            margin-left: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            vertical-align: baseline;
+        }
+
+        .nt-expand-btn:hover {
+            text-decoration: underline;
+            background: transparent;
+            border-color: transparent;
+        }
+
+        /* Expanded State */
+        .nt-modal.expanded {
+            height: 400px; /* Fixed expanded height */
+        }
+        
+        .nt-modal.expanded .nt-content-modern {
+            -webkit-line-clamp: unset;
+            max-height: calc(400px - 100px); /* Adjust based on header/footer height */
+            overflow-y: auto;
+        }
+
+        /* Custom Scrollbar for expanded view */
+        .nt-content-modern::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .nt-content-modern::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.2);
+            border-radius: 4px;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .nt-content-modern::-webkit-scrollbar-thumb {
+                background: rgba(255,255,255,0.2);
+            }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--table-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--header-bg);
+            font-weight: 600;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            background-color: var(--tag-bg);
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Next Time - Style Guide</h1>
+    <p>A reference for the design system and UI components used in the Next Time extension.</p>
+
+    <div class="component-section">
+        <h2>Color Palette</h2>
+        <div class="color-grid">
+            <div class="color-swatch">
+                <div class="swatch-preview" style="background-color: var(--primary-color);"></div>
+                <div class="swatch-label">Primary<br>var(--primary-color)</div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-preview" style="background-color: var(--bg-color);"></div>
+                <div class="swatch-label">Background<br>var(--bg-color)</div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-preview" style="background-color: var(--text-color);"></div>
+                <div class="swatch-label">Text<br>var(--text-color)</div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-preview" style="background-color: var(--table-bg);"></div>
+                <div class="swatch-label">Surface/Table<br>var(--table-bg)</div>
+            </div>
+            <div class="color-swatch">
+                <div class="swatch-preview" style="background-color: var(--delete-bg);"></div>
+                <div class="swatch-label">Danger/Delete<br>var(--delete-bg)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="component-section">
+        <h2>Typography</h2>
+        <div class="type-scale">
+            <h1 style="margin:0">Heading 1 (2em)</h1>
+            <h2 style="margin:0">Heading 2 (1.5em)</h2>
+            <h3 style="margin:0">Heading 3 (1.17em)</h3>
+            <p>Body text (1rem) - The quick brown fox jumps over the lazy dog. Inter font family is used throughout the application for optimal readability on screens.</p>
+            <div class="code-block">font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;</div>
+        </div>
+    </div>
+
+    <div class="component-section">
+        <h2>Buttons</h2>
+        <div class="example-row">
+            <button>Default Button</button>
+            <button class="primary-btn">Primary Button</button>
+            <button class="delete-btn">Delete Button</button>
+        </div>
+        <div class="code-block">
+&lt;button&gt;Default Button&lt;/button&gt;
+&lt;button class="primary-btn"&gt;Primary Button&lt;/button&gt;
+&lt;button class="delete-btn"&gt;Delete Button&lt;/button&gt;
+        </div>
+    </div>
+
+    <div class="component-section">
+        <h2>Form Elements</h2>
+        <div class="example-row" style="flex-direction: column; align-items: flex-start;">
+            <div style="width: 100%; max-width: 400px;">
+                <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Text Input</label>
+                <input type="text" placeholder="Type something..." style="width:100%; box-sizing:border-box;">
+            </div>
+            <div style="width: 100%; max-width: 400px;">
+                <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Select Dropdown</label>
+                <select style="width:100%; box-sizing:border-box;">
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                </select>
+            </div>
+        </div>
+        <div class="code-block">
+&lt;input type="text" placeholder="Type something..."&gt;
+&lt;select&gt;...&lt;/select&gt;
+        </div>
+    </div>
+
+    <div class="component-section">
+        <h2>Data Display</h2>
+        <h3>Tables</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Domain</th>
+                    <th>Message</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>example.com</td>
+                    <td>Check the updated documentation</td>
+                    <td><span class="tag">Active</span></td>
+                    <td>
+                        <button style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">Edit</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>google.com</td>
+                    <td>Buy groceries</td>
+                    <td><span class="tag">Pending</span></td>
+                    <td>
+                        <button class="delete-btn" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="component-section">
+        <h2>Modals & Overlays</h2>
+        
+        <h3>Dashboard Edit Modal</h3>
+        <p>Standard modal used for editing items in the dashboard.</p>
+        <div class="example-row" style="position: relative; height: 400px; justify-content: center; background: rgba(0,0,0,0.5); border-radius: 8px;">
+            <div style="background-color: var(--bg-color); padding: 2rem; border-radius: 8px; width: 90%; max-width: 400px; box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);">
+                <h2 style="margin-top:0; border-bottom:none;">Edit Reminder</h2>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display:block; margin-bottom:0.5rem; font-weight:500;">URL:</label>
+                    <input type="text" value="https://example.com" style="width:100%; box-sizing:border-box;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Note:</label>
+                    <textarea style="width:100%; height:80px; box-sizing:border-box;">Don't forget to check the logs.</textarea>
+                </div>
+                <div style="display:flex; justify-content:flex-end; gap:1rem; margin-top: 2rem;">
+                    <button>Cancel</button>
+                    <button class="primary-btn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+
+        <h3>Extension Reminder Overlay (v3)</h3>
+        <p>A non-intrusive floating card with glassmorphism effects, usually positioned at the top-right.</p>
+        <div class="nt-demo-wrapper">
+            <div class="nt-modal">
+                <div class="nt-top-bar">
+                    <div class="nt-brand">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        Next Time
+                    </div>
+                    <button class="nt-close-minimal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+                <div class="nt-content-modern">
+                    Don't forget to check the seasonal discounts on this category before checkout!
+                </div>
+                <div class="nt-footer-minimal">
+                    <div class="nt-pill-pagination">
+                        <button class="nt-nav-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </button>
+                        <span class="nt-count">1 / 3</span>
+                        <button class="nt-nav-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
+                    </div>
+                    <div class="nt-action-group">
+                        <button class="nt-delete-minimal" title="Delete">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4>Variation: Expandable Text (Single Line, Collapsed & Expanded)</h4>
+        <div class="nt-demo-wrapper" style="gap: 20px; justify-content: center; align-items: flex-start;">
+            
+            <!-- Single Line State -->
+            <div class="nt-modal">
+                <div class="nt-top-bar">
+                    <div class="nt-brand">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        Next Time
+                    </div>
+                    <button class="nt-close-minimal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+                <div class="nt-content-modern text-clamped">
+                    Short reminder.
+                </div>
+                <!-- No expand button needed for short text -->
+                <div class="nt-footer-minimal">
+                    <div class="nt-pill-pagination">
+                        <button class="nt-nav-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </button>
+                        <span class="nt-count">1 / 1</span>
+                        <button class="nt-nav-dot" disabled>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
+                    </div>
+                    <button class="nt-delete-minimal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Collapsed State -->
+            <div class="nt-modal">
+                <div class="nt-top-bar">
+                    <div class="nt-brand">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        Next Time
+                    </div>
+                    <button class="nt-close-minimal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+                <div class="nt-content-modern">
+                    This is a very long reminder note that exceeds the default height. It should be truncated with an ellipsis after three lines so that the popup doesn't take up too much space... <button class="nt-expand-btn">Read more <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                </div>
+                <div class="nt-footer-minimal">
+                    <div class="nt-pill-pagination">
+                        <button class="nt-nav-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </button>
+                        <span class="nt-count">1 / 1</span>
+                        <button class="nt-nav-dot" disabled>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
+                    </div>
+                    <button class="nt-delete-minimal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Expanded State -->
+            <div class="nt-modal expanded">
+                <div class="nt-top-bar">
+                    <div class="nt-brand">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        Next Time
+                    </div>
+                    <button class="nt-close-minimal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+                <div class="nt-content-modern">
+                    This is the expanded view. It has a fixed height of 400px.
+                    <br><br>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    <br><br>
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <br><br>
+                    Even more content to force the scrollbar to appear. This ensures that users can access all information even in the fixed-height mode.
+                    <button class="nt-expand-btn">Show less <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="18 15 12 9 6 15"></polyline></svg></button>
+                </div>
+                <div class="nt-footer-minimal">
+                    <div class="nt-pill-pagination">
+                        <button class="nt-nav-dot">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </button>
+                        <span class="nt-count">1 / 1</span>
+                        <button class="nt-nav-dot" disabled>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
+                    </div>
+                    <button class="nt-delete-minimal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

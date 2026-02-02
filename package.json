@@ -14,6 +14,7 @@
     "zip": "wxt zip",
     "zip:firefox": "wxt zip -b firefox",
     "compile": "tsc --noEmit",
+    "styleguide": "bunx live-server --port=5500 --entry-file=styleguide.html",
     "postinstall": "wxt prepare"
   },
   "devDependencies": {
